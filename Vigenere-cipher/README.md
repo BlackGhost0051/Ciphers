@@ -1,21 +1,115 @@
-## Vigenere Cipher
+# Vigenere cipher
 
-The Vigenere cipher is a method of encrypting alphabetic text by using a simple form of polyalphabetic substitution. It is named after Blaise de Vigenere, a French diplomat, who described it in 1586.
+With this program, you can encrypt and decrypt text using the Vigenere cipher.
 
-### How it Works
+## Content 
+1. [How does the program work?](#how-does-the-program-work)
+2. [How to install and run?](#how-to-install-and-run)
+    - [Linux](#linux)
+    - [Windows](#windows)
+3. [How does Vigenere's algorithm work?](#how-does-vigeneres-algorithm-work)
+    - [Example encrypt](#example-encrypt)
+    - [Example decrypt](#example-decrypt)
 
-1. **Key Expansion**: The key is repeated to match the length of the plaintext.
+## How does the program work?
 
-2. **Encryption**: Each letter of the plaintext is shifted cyclically according to the corresponding letter in the key. For example, if the plaintext letter is 'A' and the key letter is 'B', the resulting ciphertext letter will be 'B'.
+You need to have the **input.txt** file in the project folder.
 
-3. **Decryption**: Decryption is achieved by shifting each letter of the ciphertext in the opposite direction.
+In the program, select **Encrypt** or **Decrypt** and the program will encrypt or decrypt the contents of **input.txt** and create the corresponding file in which the result will be.
 
-### Code Overview
+## How to install and run?
+### Linux
 
-The provided C code demonstrates how to perform encryption and decryption using the Vigenere cipher. It includes functions for encryption (`encrypt`) and decryption (`decrypt`), as well as a menu-driven interface (`main`) for user interaction.
+1. **Open a terminal and navigate to the folder where your project is located using the `cd` command:** 
 
-#### Usage
-To use the code:
-1. Compile the code using a C compiler.
-2. Run the compiled program.
-3. Choose between encryption, decryption, or exit, and provide the required inputs when prompted.
+    ```bash
+    cd Vigenere-cipher
+    ```
+
+2. **Use the GCC compiler to compile the program. Run the following command:** 
+
+    ```bash
+    gcc -o main main.c
+    ```
+
+3. **After compiling, run the following command to run the program:** 
+
+    ```bash
+    ./main
+    ```
+
+### Windows
+1. Install linux. ^._.^
+2. [Run program.](#linux)
+3. ...
+
+## How does Vigenere's algorithm work?
+
+Vigenere's algorithm, unlike Caesar's cipher, uses a keyword to shift letters in the plaintext by different amounts. Each letter in the keyword corresponds to a shift value.
+
+- **Encryption formula (E)**: `E_i = (m_i + k_i) \mod 26`
+- **Decryption formula (D)**: `D_i = (c_i - k_i) \mod 26`
+
+Where:
+- `E_i` represents the encrypted letter,
+- `D_i` represents the decrypted letter,
+- `m_i` represents the position of the original letter in the alphabet (0 for A, 1 for B, ..., 25 for Z),
+- `c_i` represents the position of the encrypted letter in the alphabet,
+- `k_i` represents the position of the corresponding letter in the keyword.
+
+### Example encrypt:
+
+Let's take an example with a keyword "KEY":
+
+- Plaintext: "GHOST"
+- Keyword: "KEY"
+- Encrypted text: "QLMCX"
+
+    ```
+    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+    ABCDEFGHI...
+    ^^^^^^^^^
+    |||||||||
+    012345678...
+
+
+    G  H  O  S  T   <- text
+    ^  ^  ^  ^  ^
+    |  |  |  |  |
+    6  7  14 18 19
+    
+    K  E  Y         <- key
+    ^  ^  ^
+    |  |  |
+    10 4  24
+    ```
+    ```
+    G -> Q      (6 + 10) mod 26 = 16
+    H -> L      (7 + 4) mod 26 = 11
+    O -> M      (14 + 24) mod 26 = 12
+    S -> C      (18 + 10) mod 26 = 2
+    T -> X      (19 + 4) mod 26 = 23
+    ```
+### Example decrypt:
+To decrypt the text, reverse the process:
+
+- Ciphertext: "QLMCX"
+- Keyword: "KEY"
+- Decrypted text: "GHOST"
+
+    ```
+    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+    ABCDEFGHI...
+    ^^^^^^^^^
+    |||||||||
+    012345678...
+    ```
+    ```
+    Q -> G      (16 - 10) mod 26 = 6
+    L -> H      (11 - 4) mod 26 = 7
+    M -> O      (12 - 24) mod 26 = 14
+    C -> S      (2 - 10) mod 26 = 18
+    X -> T      (23 - 4) mod 26 = 19
+    ```
