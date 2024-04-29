@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <string.h>
 
+void logo(){
+  printf(" __   ______  _____         _       _\n");
+  printf(" \\ \\ / / __ \\|  __ \\       (_)     | |\n");
+  printf("  \\ V / |  | | |__) |   ___ _ _ __ | |__   ___ _ __\n");
+  printf("   > <| |  | |  _  /   / __| | '_ \\| '_ \\ / _ \\ '__|\n");
+  printf("  / . \\ |__| | | \\ \\  | (__| | |_) | | | |  __/ |\n");
+  printf(" /_/ \\_\\____/|_|  \\_\\  \\___|_| .__/|_| |_|\\___|_|\n");
+  printf("                             | |\n");
+  printf("                             |_|\n");
+  printf("                                    Made by Black Ghost\n");
+  return;
+}
+
 void encrypt(const char* key, const char* inputFileName){
   FILE* inputFile, *outputFile;
   inputFile = fopen(inputFileName, "r");
@@ -60,6 +73,7 @@ void decrypt(const char* key, const char* inputFileName){
 
 
 int main(){
+  logo();
 
   int start = 1;
   int value;
