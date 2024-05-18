@@ -1,14 +1,52 @@
 #include <stdio.h>
 
+
+//char alphabet[] = "abcdefghijklmnopqrstuvwxyz"; // Uncomment if you need a lowercase alphabet
+char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
 void logo(){
 
 }
 
-void decrypt(const char* targetSymbol ,const char* inputFileName){
+void encrypt(const char *targetSymbol, const char *inputFileName){
     int i = 0;
     char c;
-    //char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    FILE *inputFile, *outputFile;
+
+    inputFile = fopen(inputFileName, "r");
+    outputFile = fopen("encrypted.txt", "w");
+
+    if (inputFile == NULL){
+        printf("Error open input file!");
+        return;
+    }
+
+    while ((c = fgetc(inputFile)) != EOF ){
+        if (c >= 'A' && c <= 'Z') {
+            int position = c - 'A' + 1;
+            for (int i = 0; i < position; i++) {
+                fputc(*targetSymbol, outputFile);
+            }
+            fputc('\n', outputFile);
+        } else if (c >= 'a' && c <= 'z') {
+            int position = c - 'a' + 1;
+            for (int i = 0; i < position; i++) {
+                fputc(*targetSymbol, outputFile);
+            }
+            fputc('\n', outputFile);
+        }
+    }
+    
+
+
+    fclose(inputFile);
+    fclose(outputFile);
+}
+
+void decrypt(const char *targetSymbol, const char *inputFileName){
+    int i = 0;
+    char c;
     FILE *inputFile, *outputFile;
     
 
@@ -21,7 +59,7 @@ void decrypt(const char* targetSymbol ,const char* inputFileName){
     }
 
     while ((c = fgetc(inputFile)) != EOF){
-        if(c == '\n'){
+        if(c == '\n' && i != 0){
             fputc(alphabet[(i - 1) % 26], outputFile);
             i = 0;
         } else if (c == *targetSymbol){
@@ -36,6 +74,7 @@ void decrypt(const char* targetSymbol ,const char* inputFileName){
 
 int main(){
     logo();
+    
 
     char inputFileName[] = "input.txt";
 
@@ -55,6 +94,10 @@ int main(){
 
         switch(value) {
             case 1:
+                printf(" Target Symbol for encrypt = ");
+                while ((getchar()) != '\n');
+                scanf("%c", &targetSymbol);
+                encrypt(&targetSymbol, inputFileName);
                 break;
             case 2:
                 printf(" Target Symbol for decrypt = ");
