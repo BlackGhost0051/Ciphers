@@ -6,7 +6,14 @@ char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
 void logo(){
-
+    printf("   ____                   _ _       _ _          _       _\n");
+    printf("  / __ \\                 | (_)     (_) |        (_)     | |\n");
+    printf(" | |  | |_ __   ___    __| |_  __ _ _| |_    ___ _ _ __ | |__   ___ _ __\n");
+    printf(" | |  | | '_ \\ / _ \\  / _` | |/ _` | | __|  / __| | '_ \\| '_ \\ / _ \\ '__|\n");
+    printf(" | |__| | | | |  __/ | (_| | | (_| | | |_  | (__| | |_) | | | |  __/ |\n");
+    printf("  \\____/|_| |_|\\___|  \\__,_|_|\\__, |_|\\__|  \\___|_| .__/|_| |_|\\___|_|\n");
+    printf("                               __/ |              | |\n");
+    printf("                              |___/               |_|      Made by Black Ghost\n");   
 }
 
 void encrypt(const char *targetSymbol, const char *inputFileName){
