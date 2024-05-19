@@ -10,4 +10,5 @@ Cryptography is the practice and study of techniques for secure communication in
 3. [XOR-cipher](XOR-cipher)
 4. [Rail-fence-cipher](Rail-fence-cipher)
 5. [One-time-pad-cipher](One-time-pad-cipher)
-6. In progress.
+6. [One-digit-cipher](One-digit-cipher)
+7. In progress.
