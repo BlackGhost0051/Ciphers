@@ -36,6 +36,8 @@ void encrypt(const char *inputFileName, const char *keyFileName){
                 key = fgetc(keyFile);
                 c = 'a' + (c - 'a' + key) % 26;
                 fputc(c, outputFile);
+            } else {
+                fputc(c, outputFile);
             }
         } else {
             printf("Key is smaller than the text !!!");
