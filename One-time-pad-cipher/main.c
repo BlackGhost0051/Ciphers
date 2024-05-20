@@ -9,16 +9,50 @@ void logo(){
 
 }
 
-void encrypt(){
+void encrypt(const char *inputFileName, const char *keyFileName){
+    char c, key;
+    FILE *inputFile, *keyFile, *outputFile;
 
+    inputFile = fopen(inputFileName, "r");
+    keyFile = fopen(keyFileName, "r");
+    outputFile = fopen("encrypted.txt", "w");
+
+    if( inputFile == NULL ){
+        printf("Error open input file!");
+        return;
+    } 
+    if ( keyFile == NULL ) {
+        printf("Error open key file!");
+        return;
+    }
+
+    while((c = fgetc(inputFile)) != EOF){
+        if(key != EOF){
+            if( 'A' <= c && c <= 'Z' ){
+                key = fgetc(keyFile);
+                c = 'A' + (c - 'A' + key) % 26;
+                fputc(c, outputFile);
+            } else if('a' <= c && c <= 'z'){
+                key = fgetc(keyFile);
+                c = 'a' + (c - 'a' + key) % 26;
+                fputc(c, outputFile);
+            }
+        } else {
+            printf("Key is smaller than the text !!!");
+            return;
+        }
+    }
+
+    fclose(inputFile);
+    fclose(keyFile);
+    fclose(outputFile);
 }
 
-void decrypt(){
+void decrypt(const char *inputFileName, const char *keyFileName){
 
 }
 
 void genKeyFile(const char *inputFileName, const char *keyGenFileName){
-    int i;
     char c;
     FILE *inputFile, *keyGenFile;
 
@@ -39,9 +73,9 @@ void genKeyFile(const char *inputFileName, const char *keyGenFileName){
         } else if('a' <= c && c <= 'z'){
             int randomNumber = (rand() % 26);
             fputc(alphabet[randomNumber], keyGenFile);
-        } else {
+        } /*else {
             fputc(c, keyGenFile);
-        }
+        }*/
     }
 
     fclose(inputFile);
@@ -74,6 +108,7 @@ int main(){
 
         switch (value){
         case 1:
+            encrypt(inputFileName, keyFileName);
             break;
         case 2:
             break;
