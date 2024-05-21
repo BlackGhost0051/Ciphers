@@ -55,7 +55,7 @@ void encrypt(const char *inputFileName, const char *keyFileName){
                 c = 'a' + (c - 'a' + key) % 26;
             }
         }
-        fputc(c, outputFile); // comment if you need without space, '\n' ...
+        fputc(c, outputFile);
     }
 
 
@@ -111,7 +111,7 @@ void decrypt(const char *inputFileName, const char *keyFileName){
                 c = 'a' + (c - 'a' - key + 26) % 26;
             }
         }
-        fputc(c, outputFile); // comment if you need without space, '\n' ...
+        fputc(c, outputFile);
     }
 
 
