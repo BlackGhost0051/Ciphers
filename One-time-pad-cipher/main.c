@@ -22,7 +22,6 @@ void encrypt(const char *inputFileName, const char *keyFileName){
         return;
     } 
     if ( keyFile == NULL ) {
-        fclose(inputFile);
         printf("Error open key file!");
         return;
     }
@@ -56,7 +55,7 @@ void encrypt(const char *inputFileName, const char *keyFileName){
                 c = 'a' + (c - 'a' + key) % 26;
             }
         }
-        fputc(c, outputFile);
+        fputc(c, outputFile); // comment if you need without space, '\n' ...
     }
 
 
@@ -66,7 +65,59 @@ void encrypt(const char *inputFileName, const char *keyFileName){
 }
 
 void decrypt(const char *inputFileName, const char *keyFileName){
+    int key;
+    char c;
+    FILE *inputFile, *keyFile, *outputFile;
 
+    inputFile = fopen(inputFileName, "r");
+    keyFile = fopen(keyFileName, "r");
+    outputFile = fopen("decrypted.txt", "w");
+
+    if( inputFile == NULL ){
+        printf("Error open input file!");
+        return;
+    } 
+    if ( keyFile == NULL ) {
+        printf("Error open key file!");
+        return;
+    }
+
+    while ((c = fgetc(inputFile)) != EOF) {
+        if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
+            key = fgetc(keyFile);
+            if (key == EOF) {
+                printf("Key is smaller than the text!!!\n");
+                fclose(inputFile);
+                fclose(keyFile);
+                fclose(outputFile);
+                return;
+            }
+
+            if ('A' <= key && key <= 'Z') {
+                key = key - 'A';
+            } else if ('a' <= key && key <= 'z') {
+                key = key - 'a';
+            } else {
+                printf("Invalid key character!\n");
+                fclose(inputFile);
+                fclose(keyFile);
+                fclose(outputFile);
+                return;
+            }
+
+            if ('A' <= c && c <= 'Z') {
+                c = 'A' + (c - 'A' - key + 26) % 26;
+            } else if ('a' <= c && c <= 'z') {
+                c = 'a' + (c - 'a' - key + 26) % 26;
+            }
+        }
+        fputc(c, outputFile); // comment if you need without space, '\n' ...
+    }
+
+
+    fclose(inputFile);
+    fclose(keyFile);
+    fclose(outputFile);
 }
 
 void genKeyFile(const char *inputFileName, const char *keyGenFileName){
@@ -90,7 +141,8 @@ void genKeyFile(const char *inputFileName, const char *keyGenFileName){
         } else if('a' <= c && c <= 'z'){
             int randomNumber = (rand() % 26);
             fputc(alphabet[randomNumber], keyGenFile);
-        } /*else {
+        } 
+        /*else { // if you need to generate a key with other
             fputc(c, keyGenFile);
         }*/
     }
@@ -128,6 +180,7 @@ int main(){
             encrypt(inputFileName, keyFileName);
             break;
         case 2:
+            decrypt(inputFileName, keyFileName);
             break;
         case 3:
             genKeyFile(inputFileName, keyGenFileName);
