@@ -6,7 +6,15 @@
 char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 void logo(){
-
+    printf("   ____               _   _                                  _        _       _\n");
+    printf("  / __ \\             | | (_)                                | |      (_)     | |\n");
+    printf(" | |  | |_ __   ___  | |_ _ _ __ ___   ___   _ __   __ _  __| |   ___ _ _ __ | |__   ___ _ __\n");
+    printf(" | |  | | '_ \\ / _ \\ | __| | '_ ` _ \\ / _ \\ | '_ \\ / _` |/ _` |  / __| | '_ \\| '_ \\ / _ \\ '__|\n");
+    printf(" | |__| | | | |  __/ | |_| | | | | | |  __/ | |_) | (_| | (_| | | (__| | |_) | | | |  __/ |\n");
+    printf("  \\____/|_| |_|\\___|  \\__|_|_| |_| |_|\\___| | .__/ \\__,_|\\__,_|  \\___|_| .__/|_| |_|\\___|_|\n");
+    printf("                                            | |                        | |\n");
+    printf("                                            |_|                        |_|\n");
+    printf("                                                                                 Made by Black Ghost");
 }
 
 void encrypt(const char *inputFileName, const char *keyFileName){
@@ -58,6 +66,7 @@ void encrypt(const char *inputFileName, const char *keyFileName){
         fputc(c, outputFile);
     }
 
+    printf("\nSuccessful encrypted\n");
 
     fclose(inputFile);
     fclose(keyFile);
@@ -114,6 +123,7 @@ void decrypt(const char *inputFileName, const char *keyFileName){
         fputc(c, outputFile);
     }
 
+    printf("\nSuccessful decrypted\n");
 
     fclose(inputFile);
     fclose(keyFile);
