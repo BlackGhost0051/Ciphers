@@ -22,28 +22,43 @@ void encrypt(const char *inputFileName, const char *keyFileName){
         return;
     } 
     if ( keyFile == NULL ) {
+        fclose(inputFile);
         printf("Error open key file!");
         return;
     }
 
-    while((c = fgetc(inputFile)) != EOF){
-        if(key != EOF){
-            if( 'A' <= c && c <= 'Z' ){
-                key = fgetc(keyFile);
-                c = 'A' + (c - 'A' + key) % 26;
-                fputc(c, outputFile);
-            } else if('a' <= c && c <= 'z'){
-                key = fgetc(keyFile);
-                c = 'a' + (c - 'a' + key) % 26;
-                fputc(c, outputFile);
-            } else {
-                fputc(c, outputFile);
+    while ((c = fgetc(inputFile)) != EOF) {
+        if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
+            key = fgetc(keyFile);
+            if (key == EOF) {
+                printf("Key is smaller than the text!!!\n");
+                fclose(inputFile);
+                fclose(keyFile);
+                fclose(outputFile);
+                return;
             }
-        } else {
-            printf("Key is smaller than the text !!!");
-            return;
+
+            if ('A' <= key && key <= 'Z') {
+                key = key - 'A';
+            } else if ('a' <= key && key <= 'z') {
+                key = key - 'a';
+            } else {
+                printf("Invalid key character!\n");
+                fclose(inputFile);
+                fclose(keyFile);
+                fclose(outputFile);
+                return;
+            }
+
+            if ('A' <= c && c <= 'Z') {
+                c = 'A' + (c - 'A' + key) % 26;
+            } else if ('a' <= c && c <= 'z') {
+                c = 'a' + (c - 'a' + key) % 26;
+            }
         }
+        fputc(c, outputFile);
     }
+
 
     fclose(inputFile);
     fclose(keyFile);
