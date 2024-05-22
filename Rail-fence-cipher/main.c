@@ -11,26 +11,79 @@ void logo(){
   printf("                                                 |_|\n");
 }
 
+void encrypt(const char *inputFileName, const int rows, const int levels){
+  char c;
+  FILE *inputFile, *outputFile;
+
+  inputFile = fopen(inputFileName, "r");
+  outputFile = fopen("encrypted.txt","w");
+
+  if(inputFile == NULL){
+    printf("Error open input file!");
+    return;
+  }
+
+  while((c = fgetc) != EOF){
+    
+  }
+  
+
+  fclose(inputFile);
+  fclose(outputFile);
+
+  return;
+}
+
+void decrypt(const char *inputFileName, const int rows, const int levels){
+  char c;
+  FILE *inputFile, *outputFile;
+
+  inputFile = fopen(inputFileName, "r");
+  outputFile = fopen("decrypted.txt","w");
+
+  if(inputFile == NULL){
+    printf("Error open input file!");
+    return;
+  }
+
+  while((c = fgetc) != EOF){
+    
+  }
+
+
+  fclose(inputFile);
+  fclose(outputFile);
+
+  return;
+}
+
 int main(){
   logo();
 
   int start = 1;
+  int rows, levels;
   int value;
   char inputFileName[] = "input.txt";
 
   while(start){
     printf("\n| MENU |\n");
+    printf(" 1 -> Encrypt\n");
+    printf(" 2 -> Decrypt\n");
     printf(" 0 -> Exit\n\n");
 
     printf("Enter value : ");
     scanf("%d", &value);
 
     switch(value){
+      case 1:
+        break;
+      case 2:
+        break;
       case 0:
         start = 0;
         break;
       default: 
-        printf("Enter 0 !!!\n");
+        printf("Enter 1 , 2 or 0 !!!\n");
         break;
     }
   }
