@@ -11,7 +11,7 @@ void logo(){
   printf("                                                 |_|\n");
 }
 
-void encrypt(const char *inputFileName, const int rows, const int levels){
+void encrypt(const char *inputFileName, const int key){
   char c;
   FILE *inputFile, *outputFile;
 
@@ -34,7 +34,7 @@ void encrypt(const char *inputFileName, const int rows, const int levels){
   return;
 }
 
-void decrypt(const char *inputFileName, const int rows, const int levels){
+void decrypt(const char *inputFileName, const int key){
   char c;
   FILE *inputFile, *outputFile;
 
