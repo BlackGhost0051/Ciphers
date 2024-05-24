@@ -61,7 +61,7 @@ int main(){
   logo();
 
   int start = 1;
-  int rows, levels;
+  int key;
   int value;
   char inputFileName[] = "input.txt";
 
@@ -76,8 +76,14 @@ int main(){
 
     switch(value){
       case 1:
+        printf("key = ");
+        scanf("%d", &key);
+        encrypt(inputFileName, key);
         break;
       case 2:
+        printf("key = ");
+        scanf("%d", &key);
+        encrypt(inputFileName, key);
         break;
       case 0:
         start = 0;
