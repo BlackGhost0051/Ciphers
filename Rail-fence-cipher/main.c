@@ -13,6 +13,8 @@ void logo(){
 
 void encrypt(const char *inputFileName, const int key){
   char c;
+  int startLine = 0, endLine;
+  char line[];
   FILE *inputFile, *outputFile;
 
   inputFile = fopen(inputFileName, "r");
@@ -23,8 +25,10 @@ void encrypt(const char *inputFileName, const int key){
     return;
   }
 
-  while((c = fgetc) != EOF){
-    
+  while((c = fgetc(inputFile)) != EOF){
+    if( c == '\n' ){
+
+    }
   }
   
 
@@ -46,7 +50,7 @@ void decrypt(const char *inputFileName, const int key){
     return;
   }
 
-  while((c = fgetc) != EOF){
+  while((c = fgetc(inputFile)) != EOF){
     
   }
 
