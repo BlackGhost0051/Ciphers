@@ -11,6 +11,17 @@ void logo(){
   printf("                                                 |_|\n");
 }
 
+char* encryptLine(char line[], int key){
+  int length = 0;
+  while(line[length] != '\0'){
+    length++;
+  }
+  
+  char tmpArray[length][key];
+  char result[length];
+  return result;
+}
+
 void encrypt(const char *inputFileName, const int key){
   char c;
   int startLine = 0, endLine;
@@ -36,6 +47,17 @@ void encrypt(const char *inputFileName, const int key){
   fclose(outputFile);
 
   return;
+}
+
+char* decryptLine(char line[], int key){
+  int length = 0;
+  while(line[length] != '\0'){
+    length++;
+  }
+  
+  char tmpArray[length][key];
+  char result[length];
+  return result;
 }
 
 void decrypt(const char *inputFileName, const int key){
