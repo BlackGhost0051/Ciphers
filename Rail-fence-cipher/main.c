@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 void logo(){
   printf("______      _ _    __                           _       _\n");
@@ -11,21 +13,27 @@ void logo(){
   printf("                                                 |_|\n");
 }
 
-char* encryptLine(char line[], int key){
-  int length = 0;
-  while(line[length] != '\0'){
-    length++;
-  }
-  
-  char tmpArray[length][key];
-  char result[length];
-  return result;
+char* encryptLine(char line[], int key) {
+    int length = 0, i;
+    while (line[length] != '\0') {
+        length++;
+    }
+
+    char tmpArray[key][length];
+    char* result = (char*)malloc((length + 1) * sizeof(char));
+
+    for (i = 0; i < length; i++) {
+        result[i] = 'T';
+    }
+    result[length] = '\0';
+
+    return result;
 }
 
 void encrypt(const char *inputFileName, const int key){
   char c;
   int startLine = 0, endLine;
-  char line[];
+  char line[1000];
   FILE *inputFile, *outputFile;
 
   inputFile = fopen(inputFileName, "r");
@@ -55,7 +63,7 @@ char* decryptLine(char line[], int key){
     length++;
   }
   
-  char tmpArray[length][key];
+  char tmpArray[key][length];
   char result[length];
   return result;
 }
@@ -85,7 +93,8 @@ void decrypt(const char *inputFileName, const int key){
 
 int main(){
   logo();
-
+  encryptLine("Mytestline", 3);
+/*
   int start = 1;
   int key;
   int value;
@@ -119,6 +128,6 @@ int main(){
         break;
     }
   }
-
+*/
   return 0;
 }
