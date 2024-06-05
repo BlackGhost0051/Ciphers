@@ -14,7 +14,7 @@ void logo(){
 }
 
 char* encryptLine(char line[], int key) {
-    int length = 0, i;
+    int length = 0, i,j,k;
     while (line[length] != '\0') {
         length++;
     }
@@ -25,8 +25,47 @@ char* encryptLine(char line[], int key) {
     for (i = 0; i < length; i++) {
         result[i] = 'T';
     }
-    result[length] = '\0';
 
+    for(i = 0; i < key; i++){
+      for(j = 0; j < length; j++){
+          tmpArray[i][j] = '\0';
+      }
+    }
+
+    int down = 1;
+    int index = 0;
+    for( i = 0; i < length; i++){
+        tmpArray[index][i] = line[i];
+        
+        if(down){
+          if(index == key - 1){
+            down = 0;
+            index--;
+          } else {
+            index++;
+          }
+        } else if(!down) {
+          if(index == 0){
+            down = 1;
+            index++;
+          } else {
+            index--;
+          }
+        }
+    }
+
+    k = 0;
+    for(i = 0; i < key; i++){
+      for(j = 0; j < length; j++){
+        if(tmpArray[i][j] != '\0'){
+          result[k] = tmpArray[i][j];
+          k++;
+        }
+      }
+    }
+
+    result[length] = '\0';
+    printf("%s", result);
     return result;
 }
 
