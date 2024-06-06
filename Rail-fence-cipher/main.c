@@ -68,7 +68,7 @@ char* encryptLine(char line[], int key) {
 void encrypt(const char *inputFileName, const int key){
   char c;
   int startLine = 0, endLine;
-  char line[1000];
+  char line[1024];
   FILE *inputFile, *outputFile;
 
   inputFile = fopen(inputFileName, "r");
@@ -79,12 +79,12 @@ void encrypt(const char *inputFileName, const int key){
     return;
   }
 
-  while((c = fgetc(inputFile)) != EOF){
-    if( c == '\n' ){
-
-    }
+  while (fgets(line, sizeof(line), inputFile) != NULL) {
+    line[strcspn(line, "\n")] = '\0';
+    char* encryptedLine = encryptLine(line, key);
+    fprintf(outputFile, "%s\n", encryptedLine);
+    free(encryptedLine);
   }
-  
 
   fclose(inputFile);
   fclose(outputFile);
@@ -128,10 +128,7 @@ void decrypt(const char *inputFileName, const int key){
 
 int main(){
   logo();
-  printf("%s\n", encryptLine("Mytestline", 3));
-  printf("%s\n", encryptLine("Mylinetest", 3));
-  printf("%s\n", encryptLine("Mytestline", 3));
-/*
+
   int start = 1;
   int key;
   int value;
@@ -165,6 +162,5 @@ int main(){
         break;
     }
   }
-*/
   return 0;
 }
