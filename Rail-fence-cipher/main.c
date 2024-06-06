@@ -22,9 +22,6 @@ char* encryptLine(char line[], int key) {
     char tmpArray[key][length];
     char* result = (char*)malloc((length + 1) * sizeof(char));
 
-    for (i = 0; i < length; i++) {
-        result[i] = 'T';
-    }
 
     for(i = 0; i < key; i++){
       for(j = 0; j < length; j++){
@@ -65,7 +62,6 @@ char* encryptLine(char line[], int key) {
     }
 
     result[length] = '\0';
-    printf("%s", result);
     return result;
 }
 
@@ -132,7 +128,9 @@ void decrypt(const char *inputFileName, const int key){
 
 int main(){
   logo();
-  encryptLine("Mytestline", 3);
+  printf("%s\n", encryptLine("Mytestline", 3));
+  printf("%s\n", encryptLine("Mylinetest", 3));
+  printf("%s\n", encryptLine("Mytestline", 3));
 /*
   int start = 1;
   int key;
