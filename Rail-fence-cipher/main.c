@@ -101,7 +101,7 @@ char* decryptLine(char line[], int key){
   printf("L = %d\n", length);
   N = 2 * (key - 1);
   printf("N = %d\n", N);
-  K = round(length / N);
+  K = round((float)length / N);
   printf("K = %d\n", K);
 
   //char tmpArray[key][length];
