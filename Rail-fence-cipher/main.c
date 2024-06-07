@@ -10,7 +10,7 @@ void logo(){
   printf("| |\\ \\ (_| | | | | ||  __/ | | | (_|  __/ | (__| | |_) | | | |  __/ |\n");
   printf("\\_| \\_\\__,_|_|_| |_| \\___|_| |_|\\___\\___|  \\___|_| .__/|_| |_|\\___|_|\n");
   printf("                                                 | |\n");
-  printf("                                                 |_|\n");
+  printf("                                                 |_|           Made by Black Ghost\n");
 }
 
 char* encryptLine(char line[], int key) {
@@ -67,7 +67,6 @@ char* encryptLine(char line[], int key) {
 
 void encrypt(const char *inputFileName, const int key){
   char c;
-  int startLine = 0, endLine;
   char line[1024];
   FILE *inputFile, *outputFile;
 
@@ -93,18 +92,29 @@ void encrypt(const char *inputFileName, const int key){
 }
 
 char* decryptLine(char line[], int key){
-  int length = 0;
+  int length = 0, K, N;
   while(line[length] != '\0'){
     length++;
   }
   
-  char tmpArray[key][length];
-  char result[length];
+  printf("L = %d\n", length);
+  N = 2 * (key - 1);
+  printf("N = %d\n", N);
+  K = length / N;
+  printf("K = %d\n", K);
+
+  //char tmpArray[key][length];
+  char* result = (char*)malloc((length + 1) * sizeof(char));
+  
+
+
+  result[length] = '\0';
   return result;
 }
 
 void decrypt(const char *inputFileName, const int key){
   char c;
+  char line[1024];
   FILE *inputFile, *outputFile;
 
   inputFile = fopen(inputFileName, "r");
@@ -115,8 +125,11 @@ void decrypt(const char *inputFileName, const int key){
     return;
   }
 
-  while((c = fgetc(inputFile)) != EOF){
-    
+  while (fgets(line, sizeof(line), inputFile) != NULL) {
+    line[strcspn(line, "\n")] = '\0';
+    char* decryptedLine = decryptLine(line, key);
+    fprintf(outputFile, "%s\n", decryptedLine);
+    free(decryptedLine);
   }
 
 
@@ -128,7 +141,9 @@ void decrypt(const char *inputFileName, const int key){
 
 int main(){
   logo();
-
+  decryptLine("MsnyetieTL",3);
+  decryptLine("MsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsnyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetietlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntl", 3);
+  
   int start = 1;
   int key;
   int value;
