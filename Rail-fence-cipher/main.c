@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 void logo(){
   printf("______      _ _    __                           _       _\n");
@@ -100,7 +101,7 @@ char* decryptLine(char line[], int key){
   printf("L = %d\n", length);
   N = 2 * (key - 1);
   printf("N = %d\n", N);
-  K = length / N;
+  K = round(length / N);
   printf("K = %d\n", K);
 
   //char tmpArray[key][length];
