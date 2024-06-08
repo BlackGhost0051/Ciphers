@@ -104,7 +104,19 @@ char* decryptLine(char line[], int key){
   K = round((float)length / N);
   printf("K = %d\n", K);
 
-  //char tmpArray[key][length];
+  char tmpArray[key][length];
+
+  /*K  K*2  K 
+  K = 3
+  L = 10
+  
+  3 + 3 = 6
+
+  0 = K       - begin
+  K*2
+  array[key] = K     - end
+  */
+  
   char* result = (char*)malloc((length + 1) * sizeof(char));
   
 
