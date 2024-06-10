@@ -114,9 +114,11 @@ char* decryptLine(char line[], int key){
   for(i = 0, index = 0; i < K; i++, index++){
     tmpArray[0][i] = line[index];
   }
-
-  for(i = 0; i < K*2; i++, index++){
-    tmpArray[1][i] = line[index];
+  
+  for (j = 1; j < key - 1; j++){
+    for(i = 0; i < K*2; i++, index++){
+      tmpArray[j][i] = line[index];
+    }
   }
 
   for(i = 0; i < K; i++, index++){
