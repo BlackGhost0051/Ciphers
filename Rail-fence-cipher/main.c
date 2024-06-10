@@ -93,7 +93,7 @@ void encrypt(const char *inputFileName, const int key){
 }
 
 char* decryptLine(char line[], int key){
-  int length = 0, K, N;
+  int length = 0, K, N, i,j, index;
   while(line[length] != '\0'){
     length++;
   }
@@ -105,7 +105,33 @@ char* decryptLine(char line[], int key){
   printf("K = %d\n", K);
 
   char tmpArray[key][length];
+    for(i = 0; i < key; i++){
+      for(j = 0; j < length; j++){
+          tmpArray[i][j] = '\0';
+      }
+    }
 
+  for(i = 0, index = 0; i < K; i++, index++){
+    tmpArray[0][i] = line[index];
+  }
+
+  for(i = 0; i < K*2; i++, index++){
+    tmpArray[1][i] = line[index];
+  }
+
+  for(i = 0; i < K; i++, index++){
+    tmpArray[key - 1][i] = line[index];
+  }
+
+
+  for(i = 0; i < key; i++){
+    for(j=0; j < length; j++){
+      if(tmpArray[i][j] != '\0'){
+        printf("%c", tmpArray[i][j]);
+      }
+    }
+    printf("\n");
+  }
   /*K  K*2  K 
   K = 3
   L = 10
@@ -153,11 +179,11 @@ void decrypt(const char *inputFileName, const int key){
 }
 
 int main(){
-  logo();
+  //logo();
   decryptLine("MsnyetieTL",3);
-  decryptLine("MsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsnyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetietlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntl", 3);
+  //decryptLine("MsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsnyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetietlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntl", 3);
   
-  int start = 1;
+  /*int start = 1;
   int key;
   int value;
   char inputFileName[] = "input.txt";
@@ -189,6 +215,6 @@ int main(){
         printf("Enter 1 , 2 or 0 !!!\n");
         break;
     }
-  }
+  }*/
   return 0;
 }
