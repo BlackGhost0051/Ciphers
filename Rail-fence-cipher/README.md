@@ -12,6 +12,9 @@ With this program, you can encrypt and decrypt text using the Rail fence cipher.
     - [Example decrypt](#example-decrypt)
 
 ## How does the program work?
+You need to have the **input.txt** file in the project folder.
+
+In the program, select **Encrypt** or **Decrypt** and the program will encrypt or decrypt the contents of **input.txt** and create the corresponding file in which the result will be.
 
 ## How to install and run?
 ### Linux
