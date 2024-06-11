@@ -181,11 +181,10 @@ void decrypt(const char *inputFileName, const int key){
 }
 
 int main(){
-  //logo();
+  logo();
   decryptLine("MsnyetieTL",3);
-  //decryptLine("MsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsnyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetieyetietlMsntlMsntlMsntlMsntlMsntlMsntlMsntlMsntl", 3);
   
-  /*int start = 1;
+  int start = 1;
   int key;
   int value;
   char inputFileName[] = "input.txt";
@@ -217,6 +216,6 @@ int main(){
         printf("Enter 1 , 2 or 0 !!!\n");
         break;
     }
-  }*/
+  }
   return 0;
 }
