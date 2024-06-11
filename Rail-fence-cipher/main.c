@@ -134,16 +134,6 @@ char* decryptLine(char line[], int key){
     }
     printf("\n");
   }
-  /*K  K*2  K 
-  K = 3
-  L = 10
-  
-  3 + 3 = 6
-
-  0 = K       - begin
-  K*2
-  array[key] = K     - end
-  */
   
   char* result = (char*)malloc((length + 1) * sizeof(char));
   
