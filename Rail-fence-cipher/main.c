@@ -93,7 +93,8 @@ void encrypt(const char *inputFileName, const int key){
 }
 
 char* decryptLine(char line[], int key){
-  int length = 0, K, N, i,j, index;
+  int length = 0, N, i,j, index;
+  float K;
   while(line[length] != '\0'){
     length++;
   }
@@ -101,8 +102,8 @@ char* decryptLine(char line[], int key){
   printf("L = %d\n", length);
   N = 2 * (key - 1);
   printf("N = %d\n", N);
-  K = round((float)length / N);
-  printf("K = %d\n", K);
+  K = (float)length / N;
+  printf("K = %f\n", K);
 
   char tmpArray[key][length];
     for(i = 0; i < key; i++){
@@ -111,7 +112,7 @@ char* decryptLine(char line[], int key){
       }
     }
 
-  for(i = 0, index = 0; i < K; i++, index++){
+  for(i = 0, index = 0; i < round(K); i++, index++){
     tmpArray[0][i] = line[index];
   }
   
@@ -121,7 +122,7 @@ char* decryptLine(char line[], int key){
     }
   }
 
-  for(i = 0; i < K; i++, index++){
+  for(i = 0; i < round(K); i++, index++){
     tmpArray[key - 1][i] = line[index];
   }
 
@@ -172,7 +173,7 @@ void decrypt(const char *inputFileName, const int key){
 
 int main(){
   logo();
-  decryptLine("MsnyetieTL",3);
+  decryptLine("MsnyetieTL",3); // має бути не 6 а 5 бо 2.5 * 2 = 5
   
   int start = 1;
   int key;
