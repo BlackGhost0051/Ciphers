@@ -99,11 +99,8 @@ char* decryptLine(char line[], int key){
     length++;
   }
   
-  printf("L = %d\n", length);
   N = 2 * (key - 1);
-  printf("N = %d\n", N);
   K = (float)length / N;
-  printf("K = %f\n", K);
 
   char tmpArray[key][length];
     for(i = 0; i < key; i++){
@@ -112,32 +109,42 @@ char* decryptLine(char line[], int key){
       }
     }
 
-  for(i = 0, index = 0; i < round(K); i++, index++){
-    tmpArray[0][i] = line[index];
-  }
-  
-  for (j = 1; j < key - 1; j++){
-    for(i = 0; i < K*2; i++, index++){
-      tmpArray[j][i] = line[index];
-    }
-  }
-
-  for(i = 0; i < round(K); i++, index++){
-    tmpArray[key - 1][i] = line[index];
-  }
-
-
-  for(i = 0; i < key; i++){
-    for(j=0; j < length; j++){
-      if(tmpArray[i][j] != '\0'){
-        printf("%c", tmpArray[i][j]);
+  index = 0;
+  for (i = 0; i < key; i++) {
+    int step1 = (key - i - 1) * 2;
+    int step2 = i * 2;
+    int pos = i;
+    if (i == 0 || i == key - 1) {
+      while (pos < length) {
+        tmpArray[i][pos] = line[index++];
+          pos += N;
+      }
+    } else {
+      int toggle = 0;
+      while (pos < length) {
+        tmpArray[i][pos] = line[index++];
+        if (toggle == 0) {
+          pos += step1;
+          toggle = 1;
+        } else {
+          pos += step2;
+          toggle = 0;
+        }
       }
     }
-    printf("\n");
   }
+
   
   char* result = (char*)malloc((length + 1) * sizeof(char));
-  
+  index = 0;
+  for (j = 0; j < length; j++) {
+      for (i = 0; i < key; i++) {
+        if (tmpArray[i][j] != '\0') {
+          result[index++] = tmpArray[i][j];
+        }
+      }
+  }
+
 
 
   result[length] = '\0';
@@ -173,7 +180,6 @@ void decrypt(const char *inputFileName, const int key){
 
 int main(){
   logo();
-  decryptLine("MsnyetieTL",3); // має бути не 6 а 5 бо 2.5 * 2 = 5
   
   int start = 1;
   int key;
@@ -198,7 +204,7 @@ int main(){
       case 2:
         printf("key = ");
         scanf("%d", &key);
-        encrypt(inputFileName, key);
+        decrypt(inputFileName, key);
         break;
       case 0:
         start = 0;
