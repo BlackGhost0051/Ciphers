@@ -44,4 +44,13 @@ In the program, select **Encrypt** or **Decrypt** and the program will encrypt o
 ## How does Rail fence algorithm work?
 
 ### Example encrypt:
+
+- Plaintext: "BlackGhost"
+- Key: 3
+
+```
+B . . . k . . . s .
+. l . c . G . o . t
+. . a . . . h . . .
+```
 ### Example decrypt:
