@@ -57,3 +57,16 @@ B . . . k . . . s .
 BkslcGotah
 ```
 ### Example decrypt:
+
+ - Plaintext: "BkslcGotah"
+ - Key: 3
+
+ ```
+ Bks
+ lcGot
+ ah
+
+ B . . . k . . . s .
+. l . c . G . o . t
+. . a . . . h . . .
+ ```
