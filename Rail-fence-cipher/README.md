@@ -62,9 +62,12 @@ BkslcGotah
  - Key: 3
 
  ```
- Bks
- lcGot
- ah
+ N = 2 * (key - 1);
+ K = length / N;
+
+ Bks K
+ lcGot K*2
+ ah K
 
  B . . . k . . . s .
 . l . c . G . o . t
