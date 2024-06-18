@@ -65,6 +65,9 @@ BkslcGotah
  N = 2 * (key - 1);
  K = length / N;
 
+ 0 row K
+ Middle rows K*2
+ Last row K
  Bks K
  lcGot K*2
  ah K
