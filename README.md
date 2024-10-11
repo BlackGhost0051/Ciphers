@@ -12,3 +12,8 @@ Cryptography is the practice and study of techniques for secure communication in
 5. [One-time-pad-cipher](One-time-pad-cipher)
 6. [One-digit-cipher](One-digit-cipher)
 7. In progress.
+
+
+# Cryptanalysis
+
+Cryptanalysis is the science of breaking cryptographic systems, or decoding encrypted information, without access to the key. It involves analyzing and exploiting weaknesses in cryptographic algorithms or the implementation of those algorithms. The goal of cryptanalysis is to understand how an encryption method works in order to bypass or break it, allowing unauthorized access to the encrypted information.
